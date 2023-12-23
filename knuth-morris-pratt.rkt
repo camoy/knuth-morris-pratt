@@ -157,7 +157,7 @@
   (trace null))
 
 (module+ test
-  (require chk)
+  (require rackunit)
 
   (define (all-strings<= lower upper size)
     (cond
@@ -218,12 +218,11 @@
       (define kmp-trace (trace))
       (trace null)
 
-      (chk
-       #:= result mp-ref-result
-       #:= result mp-result
-       #:= result kmp-ref-result
-       #:= result kmp-result
+      (check-equal? result mp-ref-result)
+      (check-equal? result mp-result)
+      (check-equal? result kmp-ref-result)
+      (check-equal? result kmp-result)
 
-       #:= mp-ref-trace mp-trace
-       #:= kmp-ref-trace kmp-trace
-       ))))
+      (check-equal? mp-ref-trace mp-trace)
+      (check-equal? kmp-ref-trace kmp-trace)
+      )))
